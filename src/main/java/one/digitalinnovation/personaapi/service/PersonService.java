@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Service
 public class PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
@@ -25,7 +25,7 @@ public class PersonService {
     @PostMapping
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
         Person personToSave = personMapper.toModel(personDTO);
-        
+
         Person savedPerson = personRepository.save(personToSave);
         return MessageResponseDTO
                 .builder()
